@@ -1,0 +1,12 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <% for (let snippet of snippets) { %>
+        <div class="card">
+            <h5><%= snippet.title %></h5>
+            <pre><%= snippet.code %></pre>
+            <p><%= snippet.description %></p>
+            <p>Posté le <%= snippet.creationDate.toLocaleString('fr-FR') %></p>
+        </div>
+        <% } %>
+    </div>
+<%- include('../partials/footer.ejs') %>
