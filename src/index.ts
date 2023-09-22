@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction} from "express";
 import session from 'express-session'
 import snippetRouter from './snippets/snippets.routes'
+import 'dotenv/config'
 
 const app = express()
 const port = process.env.PORT ?? 8000;
