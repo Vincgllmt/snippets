@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response, NextFunction} from "express";
 import session from 'express-session'
 import snippetRouter from './snippets/snippets.routes'
 
@@ -21,6 +21,12 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.use('/', snippetRouter)
+
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.log(`ERREUR : ${err.message}`);
+    res.render('error', { err });
+});
 
 app.listen(port, ()=> {
     console.log(`Serveur local démarré : http://localhost:${port}`);
