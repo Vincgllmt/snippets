@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
+import prisma from "../services/prisma";
 
 export class SnippetsController {
     static async list(req: Request, res: Response, next: NextFunction) {
-        throw new Error("Ceci est un message d'erreur");
+        res.json(await prisma.snippet.findMany())
     }
 }
