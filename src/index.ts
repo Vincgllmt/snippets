@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction} from "express";
 import session from 'express-session'
 import snippetRouter from './snippets/snippets.routes'
+import languagesRouter from './languages/languages.routes'
 import 'dotenv/config'
 
 const app = express()
@@ -21,7 +22,9 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
+app.use('/languages', languagesRouter)
 app.use('/', snippetRouter)
+
 
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
