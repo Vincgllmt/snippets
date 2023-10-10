@@ -1,0 +1,17 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <% for (let language of languages) { %>
+        <div class="card">
+                <h3>
+                    <i class="<%= language.logo %>"></i>
+                    <a href="/<%=language.id %>" style="text-decoration: none;"> <%= language.name %> 
+                </h3>
+                <h4><%= language._count.snippets %> snippet(s)</h4>
+            </a>
+            
+                
+        </div>
+           
+        <% } %>
+    </div>
+<%- include('../partials/footer.ejs') %>

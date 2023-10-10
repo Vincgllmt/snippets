@@ -3,6 +3,8 @@ import prisma from "../services/prisma";
 
 export class LanguagesController {
     static async list(req: Request, res: Response) {
-        console.log(await prisma.language.findMany())
+        const languages = await prisma.language.findMany({ include: { _count: { select: { snippets: true } } } });
+        console.log(languages)
+        res.render('languages/languages_list', { languages })
     }
 }

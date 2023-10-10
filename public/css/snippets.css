@@ -22,7 +22,7 @@ pre {
 
 .header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: #444;
     border-bottom: solid black 1px;
     color: white;
@@ -156,3 +156,4 @@ td, th {
     justify-content: center;
     color: white;
 }
+
