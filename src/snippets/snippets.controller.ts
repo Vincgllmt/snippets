@@ -3,7 +3,7 @@ import prisma from "../services/prisma";
 import { validationResult } from "express-validator";
 
 export class SnippetsController {
-    static async list(req: Request, res: Response, next: NextFunction) {
+    static async list(req: Request, res: Response) {
         if(validationResult(req).isEmpty()){
             const snippets = await prisma.snippet.findMany({
                 include: {
