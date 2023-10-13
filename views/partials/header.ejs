@@ -12,8 +12,18 @@
 <body>
     <div class="header">
         <h1>Snippets</h1>
-        <div style="display: flex; gap: 50px;">
-            <a href="/" class="header" style="text-decoration: none;">Accueil</a>
-            <a href="/languages" class="header" style="text-decoration: none;">Languages</a>
+        <div style="display: flex; gap: 50px">
+            <div style="display: flex;">
+                <a href="/" class="header" style="text-decoration: none;">Accueil</a>
+                <a href="/languages" class="header" style="text-decoration: none;">Languages</a>
+            </div>
+            <div style="display: flex; gap: 15px">
+                <% if (user) { %>
+                    <p><%= user.name %></p>
+                    <a href="/auth/logout" class="header" style="text-decoration: none;">Logout</a>
+                <% } else { %>
+                    <a href="/auth" class="header" style="text-decoration: none;">Se connecter</a>
+                <% } %>
+            </div>
         </div>
     </div>
