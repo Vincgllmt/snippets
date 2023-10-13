@@ -5,7 +5,8 @@
             <h3><i class="<%= snippet.language.logo %>"></i> <%= snippet.title %></h5>
             <pre class="<%= snippet.language.htmlClass %>"><code><%= snippet.code %></code></pre>
             <p><%= snippet.description %></p>
-            <p>Posté le <%= snippet.creationDate.toLocaleString('fr-FR') %></p>
+            <p style="text-align: end;"><%= snippet.author.name %></p>
+            <p style="text-align: end;">Posté le <%= snippet.creationDate.toLocaleString('fr-FR') %></p>
         </div>
         <% } %>
     </div>

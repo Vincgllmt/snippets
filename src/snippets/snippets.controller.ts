@@ -8,6 +8,7 @@ export class SnippetsController {
             const snippets = await prisma.snippet.findMany({
                 include: {
                     language: true,
+                    author: true,
                 },
                 where: {
                     languageId: req.params.langId ? +req.params.langId : undefined
