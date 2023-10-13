@@ -19,4 +19,29 @@ export class SnippetsController {
             throw new Error('Invalid param');
         }
     }
+
+    static async newForm(req: Request, res: Response) {
+        const languages = await prisma.language.findMany()
+        res.render('snippets/snippet_form', {languages})
+    } 
+
+    static async newSnippet(req: Request, res: Response) {
+        if(!req.session.user){
+            res.status(403).send('Forbidden')
+            return;
+        }
+
+        const snippet = await prisma.snippet.create({
+            data: {
+                title: req.body.title,
+                languageId: +req.body.language,
+                code: req.body.code,
+                description: req.body.description,
+                creationDate: new Date(),
+                authorId: req.session.user?.id
+            }
+        })
+
+        res.redirect('/')
+    } 
 }
