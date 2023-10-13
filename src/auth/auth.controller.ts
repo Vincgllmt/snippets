@@ -17,4 +17,9 @@ export class AuthController{
         })
         res.redirect('/')
     } 
+    static async logout(req: Request, res: Response) {
+        req.session.destroy(err => {
+            res.redirect('/')
+        })
+    }
 }
