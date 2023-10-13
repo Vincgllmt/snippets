@@ -4,6 +4,7 @@ import snippetRouter from './snippets/snippets.routes'
 import languagesRouter from './languages/languages.routes'
 import authRouter from './auth/auth.routes'
 import 'dotenv/config'
+import { User } from "@prisma/client";
 
 const app = express()
 const port = process.env.PORT ?? 8000;
@@ -14,14 +15,14 @@ app.use(session({
     resave: false
 }));
 
-declare module "express-session" {
-    interface SessionData {
-    }
-}
+
 
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', authRouter)
 app.use('/languages', languagesRouter)
