@@ -5,6 +5,7 @@
         <div class="card">
             <% if (locals.user && snippet.authorId === locals.user.id) { %>
                 <a class="button edit" href="/edit/<%= snippet.id %>">Edit</a>
+                <a class="button delete" href="/delete/<%= snippet.id %>">Delete</a>
             <% } %>
             <h3><i class="<%= snippet.language.logo %>"></i> <%= snippet.title %></h5>
             <pre class="<%= snippet.language.htmlClass %>"><code><%= snippet.code %></code></pre>
