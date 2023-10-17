@@ -2,17 +2,17 @@
     <div class="content">
         <form method="post">
             <label for="title">Titre</label>
-            <input name="title">
+            <input name="title" value="<%= (typeof snippet !== 'undefined') ? snippet?.title : ''%>">
             <label for="language">Langage de Programmation</label>
             <select name="language">
                 <% languages.forEach(lang => { %>
-                 <option value="<%= lang.id%>"><%= lang.name %></option>
+                 <option value="<%= lang.id%>" <%= (typeof snippet !== 'undefined' && snippet?.languageId == lang.id) ? 'selected' : '' %>><%= lang.name %></option>
                 <% }) %>
             </select>
             <label for="code">code</label>
-            <textarea name="code"></textarea>
+            <textarea name="code"><%= (typeof snippet !== 'undefined') ? snippet?.code : ''%></textarea>
             <label for="description">Description</label>
-            <textarea name="description"></textarea>
+            <textarea name="description"><%= (typeof snippet !== 'undefined') ? snippet?.description : '' %></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>

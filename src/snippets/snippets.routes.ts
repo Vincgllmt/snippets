@@ -21,5 +21,7 @@ router.post('/new',
     isConnected,
     expressAsyncHandler(SnippetsController.newSnippet))
 
+router.get('/edit/:id', isConnected, expressAsyncHandler(SnippetsController.editForm))
+
 router.get('/:langId?', param("langId").optional().isNumeric().custom(languageValidator),expressAsyncHandler(SnippetsController.list))
 export default router;

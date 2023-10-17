@@ -44,4 +44,15 @@ export class SnippetsController {
 
         res.redirect('/')
     } 
+    static async editForm(req: Request, res: Response) {
+        const languages = await prisma.language.findMany()
+        const snippet = await prisma.snippet.findUnique({
+            where: {
+                id: +req.params.id
+            }
+        })
+        console.log(snippet)
+
+        res.render('snippets/snippet_form', { languages, snippet })
+    }
 }
