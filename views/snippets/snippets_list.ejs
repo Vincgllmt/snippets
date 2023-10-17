@@ -3,6 +3,9 @@
         <a class="float" href="/new">+</a>
         <% for (let snippet of snippets) { %>
         <div class="card">
+            <% if (locals.user && snippet.authorId === locals.user.id) { %>
+                <a class="button edit" href="/edit/<%= snippet.id %>">Edit</a>
+            <% } %>
             <h3><i class="<%= snippet.language.logo %>"></i> <%= snippet.title %></h5>
             <pre class="<%= snippet.language.htmlClass %>"><code><%= snippet.code %></code></pre>
             <p><%= snippet.description %></p>

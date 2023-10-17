@@ -13,7 +13,7 @@
             <textarea name="code"><%= (typeof snippet !== 'undefined') ? snippet?.code : ''%></textarea>
             <label for="description">Description</label>
             <textarea name="description"><%= (typeof snippet !== 'undefined') ? snippet?.description : '' %></textarea>
-            <button type="submit">Submit</button>
+            <button type="submit"><%= (typeof snippet !== 'undefined') ? 'Edit' : 'Add' %> </button>
         </form>
     </div>
 <%- include('../partials/footer.ejs') %>

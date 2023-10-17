@@ -51,8 +51,20 @@ export class SnippetsController {
                 id: +req.params.id
             }
         })
-        console.log(snippet)
-
         res.render('snippets/snippet_form', { languages, snippet })
+    }
+    static async editSnippet(req: Request, res: Response) {
+        await prisma.snippet.update({
+            where: {
+                id: +req.params.id
+            },
+            data: {
+                title: req.body.title,
+                languageId: +req.body.language,
+                code: req.body.code,
+                description: req.body.description,
+            }
+        })
+        res.redirect('/')
     }
 }
