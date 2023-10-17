@@ -5,7 +5,8 @@ import languagesRouter from './languages/languages.routes'
 import authRouter from './auth/auth.routes'
 import 'dotenv/config'
 import { sessionUser } from "./auth/auth.middleware";
-
+import adminRouter from "./admin/admin.routes";
+import { isAdmin } from "./admin/admin.middleware";
 const app = express()
 const port = process.env.PORT ?? 8000;
 
@@ -28,7 +29,7 @@ app.use(sessionUser)
 
 app.use('/auth', authRouter)
 app.use('/languages', languagesRouter)
-
+app.use('/admin', isAdmin, adminRouter)
 app.use('/', snippetRouter)
 
 
