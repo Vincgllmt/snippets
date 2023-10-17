@@ -1,5 +1,6 @@
 <%- include('../partials/header.ejs') %>
     <div class="content">
+        <a class="float" href="/new">+</a>
         <% for (let snippet of snippets) { %>
         <div class="card">
             <h3><i class="<%= snippet.language.logo %>"></i> <%= snippet.title %></h5>

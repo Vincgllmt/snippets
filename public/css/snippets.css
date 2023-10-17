@@ -155,5 +155,6 @@ td, th {
     align-items: center;
     justify-content: center;
     color: white;
+    text-decoration: none;
 }
 
