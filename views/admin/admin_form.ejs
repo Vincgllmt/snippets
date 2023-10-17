@@ -1,0 +1,17 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <form method="post">
+            <label for="name">Nom de l'utilisateur</label>
+            <input name="name" value="<%= (typeof editUser !== 'undefined') ? editUser?.name : ''%>">
+            <label for="role">Role</label>
+            <select name="role">
+                <% roles.forEach(role => { %>
+                 <option value="<%= role%>" <%= (typeof editUser !== 'undefined' && editUser?.role == role) ? 'selected' : '' %>><%= role %></option>
+                <% }) %>
+            </select>
+            <label for="password">Mot de passe</label>
+            <input name="password" type="password">
+            <button type="submit"><%= (typeof editUser !== 'undefined') ? 'Edit' : 'Add' %> </button>
+        </form>
+    </div>
+<%- include('../partials/footer.ejs') %>

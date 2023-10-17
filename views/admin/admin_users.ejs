@@ -1,0 +1,13 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <a class="float" href="/admin/users/new">+</a>
+        <% for (let user of users) { %>
+        <div class="card">
+            <a class="button edit" href="/admin/users/edit/<%= user.id %>">Edit</a>
+            <a class="button delete" href="/admin/users/delete/<%= user.id %>">Delete</a>
+            <p><%= user.name %></p>
+            <p style="text-align: end;"><%= user.role %></p>
+        </div>
+        <% } %>
+    </div>
+<%- include('../partials/footer.ejs') %>
