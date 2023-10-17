@@ -19,8 +19,17 @@ model Snippet {
   creationDate DateTime
   language     Language @relation(fields: [languageId], references: [id])
   author       User @relation(fields: [authorId], references: [id])
+  likes        SnippetLike[]
   languageId   Int
   authorId     Int
+}
+
+model SnippetLike {
+  id       Int      @id @default(autoincrement())
+  snippet  Snippet  @relation(fields: [snippetId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+  snippetId Int
+  userId   Int
 }
 
 model Language {
@@ -36,6 +45,7 @@ model User {
   name String @unique
   hashedPassword String
   snippets Snippet[]
+  likes SnippetLike[]
   role Role @default(USER)
 }
 enum Role {

@@ -9,6 +9,7 @@ export class SnippetsController {
                 include: {
                     language: true,
                     author: true,
+                    _count: { select: { likes: true } }
                 },
                 where: {
                     languageId: req.params.langId ? +req.params.langId : undefined
@@ -74,6 +75,37 @@ export class SnippetsController {
                 id: +req.params.id
             }
         })
+        res.redirect('/')
+    }
+
+    static async likeSnippet(req: Request, res: Response) {
+        if(!req.session.user){
+            res.status(403).send('Forbidden')
+            return;
+        }
+
+        // check if user already liked the snippet
+        const like = await prisma.snippetLike.findFirst({
+            where: {
+                snippetId: +req.params.id,
+                userId: req.session.user.id
+            }
+        })
+        if(!like){
+            await prisma.snippetLike.create({
+                data: {
+                    snippetId: +req.params.id,
+                    userId: req.session.user.id
+                }
+            })
+        }else{
+            await prisma.snippetLike.delete({
+                where: {
+                    id: like.id
+                }
+            })
+        }
+
         res.redirect('/')
     }
 }

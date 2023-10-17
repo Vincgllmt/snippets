@@ -12,6 +12,7 @@
             <p><%= snippet.description %></p>
             <p style="text-align: end;"><%= snippet.author.name %></p>
             <p style="text-align: end;">Posté le <%= snippet.creationDate.toLocaleString('fr-FR') %></p>
+            <a class="button" href="/like/<%= snippet.id %>">Like (<%= snippet._count.likes %>)</a>
         </div>
         <% } %>
     </div>
