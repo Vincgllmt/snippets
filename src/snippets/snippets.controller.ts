@@ -67,4 +67,13 @@ export class SnippetsController {
         })
         res.redirect('/')
     }
+
+    static async deleteSnippet(req: Request, res: Response) {
+        await prisma.snippet.delete({
+            where: {
+                id: +req.params.id
+            }
+        })
+        res.redirect('/')
+    }
 }

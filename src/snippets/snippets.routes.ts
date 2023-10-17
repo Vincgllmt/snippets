@@ -43,5 +43,7 @@ router.post('/edit/:id',
         .custom(snippetValidator),
     expressAsyncHandler(SnippetsController.editSnippet))
 
+router.get('/delete/:id', isConnected, isAuthorConnected, expressAsyncHandler(SnippetsController.deleteSnippet))
+
 router.get('/:langId?', param("langId").optional().isNumeric().custom(languageValidator),expressAsyncHandler(SnippetsController.list))
 export default router;
