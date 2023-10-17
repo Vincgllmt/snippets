@@ -69,4 +69,65 @@ export class adminController {
         })
         res.redirect('/admin/users')
     }
+
+    static async languages(req: Request, res: Response) {
+        const languages = await prisma.language.findMany();
+        res.render('admin/admin_language', { languages });
+    }
+
+    static async newLanguageForm(req: Request, res: Response) {
+        res.render('admin/admin_language_form');
+    }
+    static async newLanguage(req: Request, res: Response) {
+        await prisma.language.create({
+            data: {
+                name: req.body.name,
+                htmlClass: req.body.htmlClass,
+                logo: req.body.logo ?? undefined,
+            }
+        })
+        res.redirect('/admin')
+    }
+
+    static async editLanguageForm(req: Request, res: Response) {
+        const language = await prisma.language.findUnique({
+            where: {
+                id: +req.params.id
+            }
+        })
+        res.render('admin/admin_language_form', { language });
+    }
+
+    static async editLanguage(req: Request, res: Response) {
+        await prisma.language.update({
+            where: {
+                id: +req.params.id
+            },
+            data: {
+                name: req.body.name,
+                htmlClass: req.body.htmlClass,
+                logo: req.body.logo ?? undefined,
+            }
+        })
+        res.redirect('/admin/languages')
+    }
+
+    static async deleteLanguage(req: Request, res: Response) {
+        await prisma.language.update({
+            where: {
+                id: +req.params.id
+            },
+            data: {
+                snippets: {
+                    deleteMany: {}
+                }
+            }
+        })
+        await prisma.language.delete({
+            where: {
+                id: +req.params.id
+            }
+        })
+        res.redirect('/admin/languages')
+    }
 }

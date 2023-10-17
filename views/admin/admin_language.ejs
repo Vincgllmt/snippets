@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <a class="float" href="/admin/languages/new">+</a>
+        <% for (let language of languages) { %>
+        <div class="card">
+            <a class="button edit" href="/admin/languages/edit/<%= language.id %>">Edit</a>
+            <a class="button delete" href="/admin/languages/delete/<%= language.id %>">Delete</a>
+            <p>Nom: <%= language.name %></p>
+            <p>Class: <%= language.htmlClass %></p>
+
+            <p>Logo: <i class="<%= language.logo %>"></i> (<%= language.logo %>)</p>
+        </div>
+        <% } %>
+    </div>
+<%- include('../partials/footer.ejs') %>

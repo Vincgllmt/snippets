@@ -1,0 +1,13 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <form method="post">
+            <label for="name">Nom du language</label>
+            <input name="name" value="<%= (typeof language !== 'undefined') ? language?.name : ''%>">
+            <label for="htmlClass">Nom de la classe HTML (voir docs Prism)</label>
+            <input name="htmlClass" value="<%= (typeof language !== 'undefined') ? language?.name : ''%>">
+            <label for="logo">Logo</label>
+            <input name="logo" value="<%= (typeof language !== 'undefined') ? language?.logo : ''%>">
+            <button type="submit"><%= (typeof language !== 'undefined') ? 'Edit' : 'Add' %> </button>
+        </form>
+    </div>
+<%- include('../partials/footer.ejs') %>
