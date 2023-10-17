@@ -11,3 +11,11 @@ export function isConnected(req: Request, res: Response, next: NextFunction): vo
         res.redirect('/auth');
     }
 }
+export function isAuthorConnected(req: Request, res: Response, next: NextFunction){
+    console.log(req.session.user?.id, req.params.id);
+    if(req.session.user?.id === +req.params.id){
+        next();
+    }else{
+        throw new Error('Forbidden');
+    }
+}
