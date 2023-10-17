@@ -12,7 +12,8 @@ async function main() {
     const firstUser = await prisma.user.create({
         data: {
             name: 'Udycz',
-            hashedPassword: bcrypt.hashSync('azerty', salt)
+            hashedPassword: bcrypt.hashSync('azerty', salt),
+            role: 'ADMIN'
         }
     });
 

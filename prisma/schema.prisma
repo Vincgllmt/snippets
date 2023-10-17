@@ -36,4 +36,9 @@ model User {
   name String @unique
   hashedPassword String
   snippets Snippet[]
+  role Role @default(USER)
+}
+enum Role {
+  USER
+  ADMIN
 }
